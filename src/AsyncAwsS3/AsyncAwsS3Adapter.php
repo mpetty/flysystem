@@ -111,7 +111,7 @@ class AsyncAwsS3Adapter implements FilesystemAdapter, PublicUrlGenerator, Checks
         array $forwardedOptions = self::AVAILABLE_OPTIONS,
         array $metadataFields = self::EXTRA_METADATA_FIELDS,
     ) {
-        $this->prefixer = new PathPrefixer($prefix);
+        $this->prefixer = new PathPrefixer(ltrim($prefix, '\\/'));
         $this->visibility = $visibility ?? new PortableVisibilityConverter();
         $this->mimeTypeDetector = $mimeTypeDetector ?? new FinfoMimeTypeDetector();
         $this->forwardedOptions = $forwardedOptions;

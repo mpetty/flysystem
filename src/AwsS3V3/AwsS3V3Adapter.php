@@ -107,7 +107,7 @@ class AwsS3V3Adapter implements FilesystemAdapter, PublicUrlGenerator, ChecksumP
         private array $metadataFields = self::EXTRA_METADATA_FIELDS,
         private array $multipartUploadOptions = self::MUP_AVAILABLE_OPTIONS,
     ) {
-        $this->prefixer = new PathPrefixer($prefix);
+        $this->prefixer = new PathPrefixer(ltrim($prefix, '\\/'));
         $this->visibility = $visibility ?? new PortableVisibilityConverter();
         $this->mimeTypeDetector = $mimeTypeDetector ?? new FinfoMimeTypeDetector();
     }
